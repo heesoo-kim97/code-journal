@@ -18,9 +18,33 @@
   <header>
   </header>
   <main>
+    <div class="container">
       <div data-view="entry-form">
+        <form action="">
+          <h1>New Entry</h1>
+          <img src="images/placeholder-image-square.jpg" alt="Placeholder img" class="img-preview">
 
+          <label for="entry-title">
+            <h3 class="entry-type">Title</h3>
+          </label>
+          <input type="text" name="title" id="entry-title">
+
+          <label for="entry-url">
+            <h3 class="entry-type">Photo URL</h3>
+            <input type="url" name="photo URL" id="entry-url">
+          </label>
+
+          <label for="entry-notes">
+            <h3 class="entry-type">Notes</h3>
+            <textarea name="notes" id="entry-notes"></textarea>
+          </label>
+
+          <div class="save-button">
+            <button class="save"></button>
+          </div>
+        </form>
       </div>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
