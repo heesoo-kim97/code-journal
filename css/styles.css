@@ -1,0 +1,47 @@
+* {
+  font-family: 'Proza Libre', sans-serif;
+}
+
+body {
+  background-color: rgb(240, 240, 240);
+}
+
+header {
+  background-color: rgb(86, 43, 129);
+  color: white;
+  padding: 1rem;
+}
+
+.header-text {
+  font-size: 1.25rem;
+
+  /* font-weight: normal; */
+}
+
+.entry-heading {
+  font-size: 1.8rem;
+  margin: 1rem 0;
+}
+
+/* .row {
+
+} */
+
+.entry-type {
+  font-size: 1rem;
+  margin: 1rem 0;
+}
+
+.img-preview {
+  object-fit: cover;
+}
+
+/* .text-box {
+  font-size: 1rem;
+  border: 1px solid #b6b6b6;
+  padding: 0.5rem;
+}
+
+.text-box:focus {
+  outline-color: #562b81;
+} */
