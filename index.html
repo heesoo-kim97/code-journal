@@ -30,7 +30,7 @@
   <main>
     <div class="container">
       <div data-view="entry-form">
-        <form action="">
+        <form action="" class="entry-form">
           <div class="row">
             <div class="column-full">
               <h1 class="entry-heading">New Entry</h1>
@@ -39,41 +39,35 @@
 
           <div class="row">
             <div class="column-half">
-              <img src="images/placeholder-image-square.jpg" alt="Placeholder img" class="img-preview max-width">
+              <img src="images/placeholder-image-square.jpg" alt="Placeholder img" class="img-preview max-width edge">
             </div>
-          </div>
 
-          <div class="row">
             <div class="column-half">
               <label for="entry-title">
                 <h3 class="entry-type">Title</h3>
               </label>
-              <input type="text" name="title" id="entry-title" class="textbox max-width" required>
-            </div>
-          </div>
+              <input type="text" name="title" id="entry-title" class="textbox max-width edge" required>
 
-          <div class="row">
-            <div class="column-half">
-              <label for="entry-url" class="column-half">
+              <label for="entry-url">
                 <h3 class="entry-type">Photo URL</h3>
               </label>
-              <input type="url" name="photo URL" id="entry-url" class="textbox max-width photoUrl" required>
+              <input type="url" name="photo URL" id="entry-url" class="textbox max-width photoUrl edge" required>
             </div>
           </div>
 
           <div class="row">
-            <div class="column-half">
-              <label for="entry-notes" class="column-half">
+            <div class="column-full">
+              <label for="entry-notes">
                 <h3 class="entry-type">Notes</h3>
               </label>
-              <textarea name="notes" id="entry-notes" class="textbox max-width" required></textarea>
+              <textarea name="notes" id="entry-notes" class="textbox max-width edge" cols="30" rows="6" required></textarea>
             </div>
           </div>
 
           <div class="row">
             <div class="column-full">
               <div class="save">
-                <button class="save-button">SAVE</button>
+                <button class="save-button edge">SAVE</button>
               </div>
             </div>
           </div>

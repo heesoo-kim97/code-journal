@@ -9,11 +9,18 @@ body {
 header {
   background-color: rgb(86, 43, 129);
   color: white;
-  padding: 1rem;
+  padding: 1rem 0;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 auto;
 }
 
 .header-text {
   font-size: 1.25rem;
+  font-weight: normal;
 }
 
 .entry-heading {
