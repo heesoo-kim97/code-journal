@@ -14,8 +14,6 @@ header {
 
 .header-text {
   font-size: 1.25rem;
-
-  /* font-weight: normal; */
 }
 
 .entry-heading {
@@ -53,4 +51,10 @@ header {
   border-width: 0;
   margin: 1rem 0;
   padding: 0.25rem 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .img-preview {
+    width: 100%;
+  }
 }
