@@ -23,10 +23,6 @@ header {
   margin: 1rem 0;
 }
 
-/* .row {
-
-} */
-
 .entry-type {
   font-size: 1rem;
   margin: 1rem 0;
@@ -36,12 +32,25 @@ header {
   object-fit: cover;
 }
 
-/* .text-box {
+.textbox {
   font-size: 1rem;
   border: 1px solid #b6b6b6;
   padding: 0.5rem;
 }
 
-.text-box:focus {
+.textbox:focus {
   outline-color: #562b81;
-} */
+}
+
+.save {
+  display: flex;
+  justify-content: center;
+}
+
+.save-button {
+  background-color: #562b61;
+  color: white;
+  border-width: 0;
+  margin: 1rem 0;
+  padding: 0.25rem 1rem;
+}
