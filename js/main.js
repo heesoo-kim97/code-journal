@@ -34,3 +34,7 @@ var newObject = {
 
 data.nextEntryId++;
 data.entries.unshift(newObject);
+
+$photo.setAttribute('src', 'images/placeholder-image-square.jpg');
+
+$entryForm.reset();
