@@ -49,7 +49,7 @@ h3 {
 
 .save {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .save-button {
