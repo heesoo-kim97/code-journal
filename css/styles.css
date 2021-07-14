@@ -1,0 +1,66 @@
+* {
+  font-family: 'Proza Libre', sans-serif;
+}
+
+body {
+  background-color: rgb(240, 240, 240);
+}
+
+header {
+  background-color: rgb(86, 43, 129);
+  color: white;
+  padding: 1rem 0;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 auto;
+}
+
+.header-text {
+  font-size: 1.25rem;
+}
+
+.entry-heading {
+  font-size: 1.8rem;
+  margin: 1rem 0;
+}
+
+.entry-type {
+  font-size: 1rem;
+  margin: 1rem 0;
+}
+
+.img-preview {
+  object-fit: cover;
+}
+
+.textbox {
+  font-size: 1rem;
+  border: 1px solid #b6b6b6;
+  padding: 0.5rem;
+}
+
+.textbox:focus {
+  outline-color: #562b81;
+}
+
+.save {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.save-button {
+  background-color: #562b61;
+  color: white;
+  border-width: 0;
+  margin: 1rem 0;
+  padding: 0.25rem 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .img-preview {
+    width: 100%;
+  }
+}
