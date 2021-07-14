@@ -13,11 +13,67 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Proza+Libre&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
+    <div class="container">
+      <div class="row">
+        <div class="column-full">
+          <h2 class="header-text">Code Journal</h2>
+        </div>
+      </div>
+    </div>
   </header>
   <main>
+    <div class="container">
+      <div data-view="entry-form">
+        <form action="" class="entry-form">
+          <div class="row">
+            <div class="column-full">
+              <h1 class="entry-heading">New Entry</h1>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="column-half">
+              <img src="images/placeholder-image-square.jpg" alt="Placeholder img" class="img-preview max-width edge">
+            </div>
+
+            <div class="column-half">
+              <label for="entry-title">
+                <h3 class="entry-type">Title</h3>
+              </label>
+              <input type="text" name="title" id="entry-title" class="textbox max-width edge" required>
+
+              <label for="entry-url">
+                <h3 class="entry-type">Photo URL</h3>
+              </label>
+              <input type="url" name="photo URL" id="entry-url" class="textbox max-width photoUrl edge" required>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="column-full">
+              <label for="entry-notes">
+                <h3 class="entry-type">Notes</h3>
+              </label>
+              <textarea name="notes" id="entry-notes" class="textbox max-width edge" cols="30" rows="6" required></textarea>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="column-full">
+              <div class="save">
+                <button class="save-button edge">SAVE</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
