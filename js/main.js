@@ -38,3 +38,40 @@ function handleSaveButton(event) {
 
   $entryForm.reset();
 }
+
+function journalEntry(entry) {
+  var $listItem = document.createElement('li');
+  $listItem.className = 'entry-list-item';
+
+  var $row = document.createElement('div');
+  $row.className = 'row';
+  $listItem.appendChild($row);
+
+  var $imgColumn = document.createElement('div');
+  $imgColumn.className = 'column-half';
+  $row.appendChild($imgColumn);
+
+  var $image = document.createElement('img');
+  $image.setAttribute('src', entry.url);
+  $image.className = 'max-width edge img-preview';
+  $imgColumn.appendChild($image);
+
+  var $textColumn = document.createElement('div');
+  $textColumn.className = 'column-half';
+  $row.appendChild($textColumn);
+
+  var $entryHeading2 = document.createElement('h2');
+  $entryHeading2.className = 'entry-heading';
+  $entryHeading2.textContent = entry.title;
+  $textColumn.appendChild($entryHeading2);
+
+  var $entryNotes = document.createElement('p');
+  $entryNotes.className = 'entry-paragraph';
+  $entryNotes.textContent = entry.notes;
+  $textColumn.appendChild($entryNotes);
+
+  return $listItem;
+}
+
+var test;
+test.addEventListener(journalEntry);
