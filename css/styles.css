@@ -59,6 +59,34 @@ h3 {
   padding: 0.25rem 1rem;
 }
 
+.entries-unordered-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.entries-list-item {
+  margin-bottom: 2rem;
+}
+
+.new-button {
+  margin: auto 0;
+  padding: 0.25rem 0.5rem;
+  color: white;
+  background-color: #562b61;
+}
+
+.new-button:active {
+  transform: translateY(2px);
+}
+
+.entry-paragraph {
+  white-space: pre-line;
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 2rem;
+}
+
 @media screen and (min-width: 768px) {
   .img-preview {
     width: 100%;

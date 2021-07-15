@@ -85,17 +85,55 @@
 
       <!-- issue 2 -->
 
-      <div data-type="entries">
+      <div data-type="entries" class="view">
         <div class="row">
           <div class="column-full">
-            <h1 class="entry-heading">Entries</h1>
-            <button>NEW</button>
+            <div class="justify-layout">
+              <h1 class="entry-heading">Entries</h1>
+              <button class="new-button edge">NEW</button>
+            </div>
           </div>
         </div>
 
-        <ul>
+        <ul class="entry-unordered-list">
+          <li class="entry-list-item">
+            <div class="row">
+              <div class="column-half">
+                <img src="https://miro.medium.com/max/2944/1*G0or3nXOtD3vVEvyEbCldQ.png" alt="Ada Lovelace" class="max-width edge img-preview">
+              </div>
+
+              <div class="column-half">
+                <h2 class="entry-heading">Ada Lovelace</h2>
+                <p class="entry-paragraph">
+                  Augusta Ada King, Countess of Lovelace was an English mathematician and writer, chiefly known for her work on
+                  Charles Babbage's proposed mechanical general-purpose computer, the Analytical Engine. <br>
+                  She was the first to recognize that the machine had applications beyond pure calculation, and to have published
+                  the first algorithm intended to be carried out by such a machine.
+                </p>
+              </div>
+            </div>
+          </li>
+
+          <!-- Entry 1 -->
+          <li class="entry-list-item">
+            <div class="row">
+              <div class="column-half">
+                <img src="https://venturebeat.com/wp-content/uploads/2018/01/javascript.jpg?fit=1800%2C1116&strip=all" alt="JavaScript" class="max-width edge img-preview">
+              </div>
+
+              <div class="column-half">
+                <h2 class="entry-heading">JavaScript</h2>
+                <p class="entry-paragraph">
+                  JavaScript, often abbreviated as JS, is a programming language that conforms to the ECMAScript specification.
+                  <br>
+                  JavaScript is high-level, often just-in-time compiled, and multi-paradigm. It has curly-bracket syntax, dynamic
+                  typing, prototype-based object-orientation, and first-class functions.
+                </p>
+              </div>
+            </div>
+          </li>
           <div class="row">
-            <div class="column-full">
+            <div class="column-full center-text">
               <p>No Entries have been recorded</p>
             </div>
           </div>
