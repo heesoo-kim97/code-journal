@@ -1,77 +1,229 @@
 /* global data */
 /* exported data */
+
+// photo url and preview photo code
 var $photoUrl = document.querySelector('.photoUrl');
-$photoUrl.addEventListener('input', urlHandler);
-
-var $photo = document.querySelector('.img-preview');
-$photo.addEventListener('error', errorHandler);
-
-function urlHandler(event) {
-  $photo.setAttribute('src', $photoUrl.value);
+var $previewPhoto = document.querySelector('.preview-photo');
+function updateSRC(event) {
+  $previewPhoto.src = $photoUrl.value;
 }
 
-function errorHandler(event) {
-  $photo.setAttribute('src', 'images/placeholder-image-square.jpg');
-}
+$photoUrl.addEventListener('input', updateSRC);
 
-var $entryForm = document.querySelector('.entry-form');
-$entryForm.addEventListener('submit', handleSaveButton);
-
-function handleSaveButton(event) {
+// save button interactions code
+var $form = document.forms[0];
+var $saveButton = document.querySelector('.save-button');
+function storeData(event) {
   event.preventDefault();
+  if (data.editing === null) {
+    var dataEntry = {};
+    dataEntry.title = $form.elements.title.value;
+    dataEntry.pictureLink = $form.elements.photoUrl.value;
+    dataEntry.notes = $form.elements.notes.value;
+    dataEntry.entryId = data.nextEntryId;
+    data.nextEntryId++;
+    data.entries.unshift(dataEntry);
+    $form.reset();
+    $previewPhoto.src = 'images/placeholder-image-square.jpg';
+    $entriesList.setAttribute('class', 'entries-list');
+    data.view = 'entries';
+    switchViewTo('entries');
+    var newDataEntry = data.entries[0];
+    prependDOM(newDataEntry);
+  } else {
+    var updatedEntry = {};
+    for (var dataEntriesIndex2 = 0; dataEntriesIndex2 < data.entries.length; dataEntriesIndex2++) {
+      if (data.editing === data.entries[dataEntriesIndex2].entryId.toString()) {
+        updatedEntry.title = $form.elements.title.value;
+        updatedEntry.pictureLink = $form.elements.photoUrl.value;
+        updatedEntry.notes = $form.elements.notes.value;
+        updatedEntry.entryId = data.editing;
+        data.entries[dataEntriesIndex2] = updatedEntry;
+        var $updatedEntry = createEntry(updatedEntry);
+        $updatedEntry.setAttribute('data-entry-id', updatedEntry.entryId);
+        for (var childElementIndex = 0; childElementIndex < $entriesUnorderedList.children.length; childElementIndex++) {
+          if ($entriesUnorderedList.children[childElementIndex].getAttribute('data-entry-id') === updatedEntry.entryId) {
+            $entriesUnorderedList.children[childElementIndex].replaceWith($updatedEntry);
+          }
+        }
+        switchViewTo('entries');
+        data.entries.splice(dataEntriesIndex2, 1, updatedEntry);
+      }
+    }
+    data.editing = null;
+  }
+}
+$saveButton.addEventListener('click', storeData);
 
-  var $entryTitle = document.querySelector('#entry-title');
-  var $entryUrl = document.querySelector('#entry-url');
-  var $entryNotes = document.querySelector('#entry-notes');
-
-  var newObject = {
-    title: $entryTitle.value,
-    url: $entryUrl.value,
-    notes: $entryNotes.value,
-    id: data.nextEntryId
-  };
-
-  data.nextEntryId++;
-  data.entries.unshift(newObject);
-
-  $photo.setAttribute('src', 'images/placeholder-image-square.jpg');
-
-  $entryForm.reset();
+function prependDOM(selectEntry) {
+  var $newestEntry = createEntry(selectEntry);
+  $newestEntry.setAttribute('data-entry-id', selectEntry.entryId);
+  $entriesUnorderedList.prepend($newestEntry);
 }
 
-function journalEntry(entry) {
-  var $listItem = document.createElement('li');
-  $listItem.className = 'entry-list-item';
+// entries list generation code
+var $entriesList = document.querySelector('.entries-list');
+var $entriesUnorderedList = document.querySelector('ul');
+var $emptyList = document.querySelector('.empty-entry-list');
 
-  var $row = document.createElement('div');
-  $row.className = 'row';
-  $listItem.appendChild($row);
+function createEntry(entry) {
+  $emptyList.setAttribute('class', 'hidden');
+  var $newEntry = document.createElement('li');
+  $newEntry.setAttribute('class', 'entry-container full-flex');
 
-  var $imgColumn = document.createElement('div');
-  $imgColumn.className = 'column-half';
-  $row.appendChild($imgColumn);
+  var $newEntryImageContainer = document.createElement('div');
+  $newEntryImageContainer.setAttribute('class', 'column-half image-container no-padding');
+  var $newEntryImage = document.createElement('img');
+  $newEntryImage.setAttribute('src', entry.pictureLink);
+  $newEntryImageContainer.appendChild($newEntryImage);
+  $newEntry.appendChild($newEntryImageContainer);
 
-  var $image = document.createElement('img');
-  $image.setAttribute('src', entry.url);
-  $image.className = 'max-width edge img-preview';
-  $imgColumn.appendChild($image);
+  var $newEntryTextDiv = document.createElement('div');
+  $newEntryTextDiv.setAttribute('class', 'column-half entry-text');
 
-  var $textColumn = document.createElement('div');
-  $textColumn.className = 'column-half';
-  $row.appendChild($textColumn);
+  var $newEntryTitle = document.createElement('h2');
+  var $newEntryTitleText = document.createTextNode(entry.title);
+  $newEntryTitle.setAttribute('class', 'entry-title-text');
+  $newEntryTitle.appendChild($newEntryTitleText);
+  $newEntryTextDiv.appendChild($newEntryTitle);
 
-  var $entryHeading2 = document.createElement('h2');
-  $entryHeading2.className = 'entry-heading';
-  $entryHeading2.textContent = entry.title;
-  $textColumn.appendChild($entryHeading2);
+  var $editEntryIconButton = document.createElement('button');
+  $editEntryIconButton.className = ('float-right pen-button');
+  var $editEntryIcon = document.createElement('i');
+  $editEntryIcon.className = 'fas fa-pen';
+  $editEntryIconButton.appendChild($editEntryIcon);
+  $newEntryTitle.appendChild($editEntryIconButton);
 
-  var $entryNotes = document.createElement('p');
-  $entryNotes.className = 'entry-paragraph';
-  $entryNotes.textContent = entry.notes;
-  $textColumn.appendChild($entryNotes);
+  var $newEntryNotes = document.createElement('p');
+  var $newEntryNotesText = document.createTextNode(entry.notes);
+  $newEntryNotes.setAttribute('class', 'entry-notes-text');
+  $newEntryNotes.appendChild($newEntryNotesText);
+  $newEntryTextDiv.appendChild($newEntryNotes);
 
-  return $listItem;
+  $newEntry.appendChild($newEntryTextDiv);
+  return $newEntry;
 }
 
-var test;
-test.addEventListener(journalEntry);
+function generateDOM(event) {
+  for (var dataLength = 0; dataLength < data.entries.length; dataLength++) {
+    var $appendedEntry = createEntry(data.entries[dataLength]);
+    $appendedEntry.setAttribute('data-entry-id', data.entries[dataLength].entryId);
+    $entriesUnorderedList.appendChild($appendedEntry);
+  }
+}
+document.addEventListener('DOMContentLoaded', generateDOM);
+
+// links
+var $newEntryButton = document.querySelector('.new-entry-button');
+$newEntryButton.addEventListener('click', retrieveTargetLink);
+var $entriesLink = document.querySelector('.header-entries-link');
+$entriesLink.addEventListener('click', retrieveTargetLink);
+
+function retrieveTargetLink(event) {
+  var destination = event.target.getAttribute('data-view');
+  switchViewTo(destination);
+  data.editing = null;
+  resetFormAndPicture();
+}
+
+function resetFormAndPicture() {
+  $form.reset();
+  $previewPhoto.src = 'images/placeholder-image-square.jpg';
+}
+
+var pages = document.querySelectorAll('.page');
+function switchViewTo(targetPage) {
+  for (var j = 0; j < pages.length; j++) {
+    if (pages[j].getAttribute('data-view') === targetPage) {
+      data.view = targetPage;
+      pages[j].className = 'view';
+    } else {
+      pages[j].className = 'view hidden';
+    }
+  }
+}
+
+// prevent page from refreshing
+function showLastViewVisited(event) {
+  switchViewTo(data.view);
+}
+window.addEventListener('DOMContentLoaded', showLastViewVisited);
+
+// listening for clicks on the parent element of all rendered entries
+// we need to get the value of the selected data entry
+function editButtonListener(event) {
+  if (event.target && event.target.nodeName === 'I') {
+    var $parentEntryContainer = event.target.closest('.entry-container');
+    data.editing = $parentEntryContainer.getAttribute('data-entry-id');
+    var $entryNeedsEditing = {};
+    for (var dataEntriesIndex = 0; dataEntriesIndex < data.entries.length; dataEntriesIndex++) {
+      if (data.editing === data.entries[dataEntriesIndex].entryId.toString()) {
+        $entryNeedsEditing = data.entries[dataEntriesIndex];
+      }
+    }
+    switchViewTo('entry-form');
+    // console.log($entryNeedsEditing);
+    var $currentTitle = $entryNeedsEditing.title;
+    var $currentPhotoUrl = $entryNeedsEditing.pictureLink;
+    var $currentNotes = $entryNeedsEditing.notes;
+    // console.log($currentNotes, $currentPhotoUrl, $currentTitle);
+
+    $form.elements.title.value = $currentTitle;
+    $form.elements.photoUrl.value = $currentPhotoUrl;
+    $form.elements.notes.value = $currentNotes;
+    $previewPhoto.setAttribute('src', $currentPhotoUrl);
+  }
+  revealDelete();
+}
+$entriesList.addEventListener('click', editButtonListener);
+
+// delete button
+var $delete = document.querySelector('.delete-button-container');
+function revealDelete(event) {
+  if (data.editing === null) {
+    setHidden($delete);
+  } else {
+    $delete.setAttribute('class', 'delete-button-container');
+  }
+}
+
+var $deleteButton = document.querySelector('.delete-button');
+var $modalScreen = document.querySelector('.modal-container');
+function revealModal(event) {
+  event.preventDefault();
+  $modalScreen.setAttribute('class', 'modal-container row centered');
+  switchViewTo('entry-form');
+}
+$deleteButton.addEventListener('click', revealModal);
+
+var $cancelButton = document.querySelector('.cancel-button');
+var $confirmButton = document.querySelector('.confirm-button');
+
+function setHidden(targetObject) {
+  targetObject.className = 'hidden';
+}
+
+function modalCanceled(event) {
+  setHidden($modalScreen);
+}
+$cancelButton.addEventListener('click', modalCanceled);
+
+function entryDeleted(event) {
+  for (var dataEntriesIndex3 = 0; dataEntriesIndex3 < data.entries.length; dataEntriesIndex3++) {
+    if (data.entries[dataEntriesIndex3].entryId.toString() === data.editing) {
+      data.entries.splice(dataEntriesIndex3, 1);
+    }
+  }
+  for (var objectsIndex = 0; objectsIndex < $entriesUnorderedList.children.length; objectsIndex++) {
+    if ($entriesUnorderedList.children[objectsIndex].getAttribute('data-entry-id') === data.editing) {
+      $entriesUnorderedList.children[objectsIndex].remove();
+    }
+  }
+  if (data.entries.length === 0) {
+    $emptyList.className('empty-entry-list');
+  }
+  modalCanceled();
+  switchViewTo('entries');
+  data.editing = null;
+}
+$confirmButton.addEventListener('click', entryDeleted);

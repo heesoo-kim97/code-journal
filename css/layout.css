@@ -31,22 +31,9 @@
   .column-half {
     width: 50%;
   }
-}
 
-.max-width {
-  width: 100%;
-}
-
-.edge {
-  border-radius: 4px;
-}
-
-.justify-layout {
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-}
-
-.center-text {
-  text-align: center;
+  .photo-url-section {
+    position: relative;
+    top: 20px;
+  }
 }
