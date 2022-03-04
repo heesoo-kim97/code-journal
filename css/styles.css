@@ -1,66 +1,243 @@
-* {
-  font-family: 'Proza Libre', sans-serif;
+.header-colors {
+  background: rgb(86, 43, 129);
+  color: white;
 }
 
-body {
-  background-color: rgb(240, 240, 240);
+.header-positioning {
+  justify-content: flex-start;
+  align-items: baseline;
 }
 
-header {
+.header-main {
+  font-size: 0.9rem;
+  font-weight: 200;
+}
+
+.header-sub {
+  font-size: 0.85rem;
+  font-weight: 200;
+  position: relative;
+  left: 15px;
+}
+
+.header-entries-link,
+.header-entries-link:active,
+.header-entries-link:visited,
+.header-entries-link:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Current Page Banner */
+.current-title {
+  font-size: 1.6rem;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+/* Button Section */
+.button {
   background-color: rgb(86, 43, 129);
   color: white;
-  padding: 1rem 0;
+  text-align: center;
+  padding: 0 10px;
+  border: 1px hidden;
+  border-radius: 5px;
+  height: 30px;
 }
 
-h1,
-h2,
-h3 {
-  margin: 0 auto;
-}
-
-.header-text {
-  font-size: 1.25rem;
-}
-
-.entry-heading {
-  font-size: 1.8rem;
-  margin: 1rem 0;
-}
-
-.entry-type {
-  font-size: 1rem;
-  margin: 1rem 0;
-}
-
-.img-preview {
-  object-fit: cover;
-}
-
-.textbox {
-  font-size: 1rem;
-  border: 1px solid #b6b6b6;
-  padding: 0.5rem;
-}
-
-.textbox:focus {
-  outline-color: #562b81;
-}
-
-.save {
-  display: flex;
-  justify-content: flex-end;
+.button:hover {
+  cursor: pointer;
 }
 
 .save-button {
-  background-color: #562b61;
+  position: relative;
+  top: 15px;
+  margin-bottom: 30px;
+}
+
+.fa-pen {
+  color: rgb(172, 137, 207);
+}
+
+.fa-pen:hover {
+  color: rgb(86, 43, 129);
+}
+
+.pen-button {
+  border: none;
+  padding: 0;
+  font-size: 1.5rem;
+}
+
+.pen-button:hover {
+  cursor: pointer;
+}
+
+.float-right {
+  float: right;
+}
+
+.float-left {
+  float: left;
+}
+
+.delete-button {
+  text-decoration: underline;
+  color: rgb(253, 93, 93);
+  border: 1px hidden;
+  text-align: end;
+  position: relative;
+  top: 15px;
+}
+
+.delete-button:hover {
+  color: red;
+  cursor: pointer;
+}
+
+/* Modal Content */
+.modal {
+  border: 1px solid;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 1000px rgba(20, 20, 20, 0.7), 0 1px 0 1px rgb(21, 21, 21, 0.6);
+  text-align: center;
+  position: fixed;
+  top: 35%;
+  padding: 10px 10px;
+}
+
+.option-button {
+  border: 1px hidden;
+  border-radius: 5px;
+  padding: 4px 10px;
+  font-weight: 600;
+}
+
+.option-button:hover {
+  cursor: pointer;
+}
+
+.cancel-button {
+  background-color: rgb(134, 134, 134);
+  color: black;
+}
+
+.confirm-button {
+  background-color: red;
   color: white;
-  border-width: 0;
-  margin: 1rem 0;
-  padding: 0.25rem 1rem;
+}
+
+.modal > p {
+  font-size: small;
+}
+
+/* Entry Form Inputs */
+textarea {
+  font-family: sans-serif, monospace;
+  font-weight: 500;
+}
+
+.text-input {
+  border: 1px solid darkgrey;
+  border-radius: 3px;
+  background-color: white;
+  width: 100%;
+  line-height: 2;
+  outline-color: rgb(86, 43, 129);
+}
+
+.notes {
+  height: 100px;
+  resize: none;
+}
+
+/* Entries List */
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.entry-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-bottom: 30px;
+}
+
+.entry-notes-text {
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+.entry-text {
+  position: relative;
+  bottom: 15px;
+}
+
+/* Body */
+body {
+  font-family: sans-serif, monospace;
+  font-weight: 600;
+}
+
+* {
+  background-color: rgb(240, 240, 240);
+}
+
+label {
+  line-height: 2.5;
+}
+
+img {
+  width: 100%;
+  height: 350px;
+  margin-bottom: 20px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.image-container {
+  height: 350px;
+}
+
+/* Other Tools */
+.flex-end {
+  justify-content: flex-end;
+}
+
+.centered {
+  justify-content: center;
+}
+
+.full-flex {
+  flex-basis: 100%;
+}
+
+.flex-basis-half {
+  flex-basis: 50%;
+}
+
+.align-items-center {
+  display: flex;
+  align-items: center;
 }
 
 @media screen and (min-width: 768px) {
-  .img-preview {
-    width: 100%;
+  .header-positioning {
+    position: relative;
+    left: 10px;
+  }
+
+  .header-main {
+    font-size: 1.3rem;
+  }
+
+  .header-sub {
+    font-size: 1rem;
+    left: 20px;
   }
 }

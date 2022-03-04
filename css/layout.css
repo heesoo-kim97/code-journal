@@ -31,12 +31,9 @@
   .column-half {
     width: 50%;
   }
-}
 
-.max-width {
-  width: 100%;
-}
-
-.edge {
-  border-radius: 4px;
+  .photo-url-section {
+    position: relative;
+    top: 20px;
+  }
 }
